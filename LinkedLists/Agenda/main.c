@@ -1,5 +1,6 @@
 /*
     Unidirectional Linked List with many functions
+    This approach to linked list 
 */
 
 #include <stdio.h>
