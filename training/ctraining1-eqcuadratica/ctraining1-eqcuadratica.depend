@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1465440682 source:c:\users\marosale\documents\ctraining\ctraining1-eqcuadratica\main.c
+	<stdio.h>
+	<math.h>
+
