@@ -82,18 +82,22 @@ void PrintMatrix(struct node* ptr){
   struct node* cpy = ptr;
   printf("addr inicio : %p (%d) \n", ptr, ptr->val);
   printf("second row : %p (%d) \n", cpy->row, cpy->row->val );
-
+  int cont=0;
   while( !finish ) {
 
     // printing first row, every column
     while( ptr != NULL ) {
-      printf(" ( %d ) ->", ptr->val);
+      printf("(%d)->\t", ptr->val);
       ptr = ptr->col;
+      cont++;
     }
 
     printf(" NULL \n");
-    printf("   |        |        | \n");
-    
+    for(int k=0; k<cont; k++){
+      printf("|\t");
+    }
+    printf("\n");
+
     // next row
     ptr = cpy->row;
     cpy = ptr;
@@ -102,8 +106,12 @@ void PrintMatrix(struct node* ptr){
       // repete printing row
     } else {
       finish = true;
-      printf("  NULL     NULL     NUL\n");  
+      for(int k=0; k<cont; k++){
+        printf("NULL\t");
+      }
+      printf("\n");
     }
+    cont = 0;
 
   }
 
