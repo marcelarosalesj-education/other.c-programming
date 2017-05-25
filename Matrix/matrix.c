@@ -27,33 +27,36 @@ struct node* CreateRandomMatrix(int rows, int cols) {
   struct node* cpythis = this;
 
   for(i=0; i<rows; i++){
-    for(j=0; j<cols-1; j++){
 
-      struct node* newnode = (struct node*)malloc(sizeof(struct node));
-      (*newnode).val=control;//factor*rand();
-      control+=10;
-      (*newnode).row = NULL;
-      (*newnode).col = NULL;
-      (*this).col = newnode;
-      printf("this(%p):%d->%p , new(%p):%d->%p \n", this , this->val , this->col,
-                                this->col, this->col->val , this->col->col);
-      
-      if(j < cols ){
-        this=newnode;
+
+    if(cols == 1){
+      printf("solo 1 col\n");
+      printf("this(%p):%d->%p / %p \n", this , this->val , this->col, this->row);
+    } else {
+      for(j=1; j<cols ; j++){
+
+        struct node* newnode = (struct node*)malloc(sizeof(struct node));
+        (*newnode).val=control;//factor*rand();
+        control+=10;
+        (*newnode).row = NULL;
+        (*newnode).col = NULL;
+        (*this).col = newnode;
+        printf("this(%p):%d->%p , new(%p):%d->%p \n", this , this->val , this->col,
+                                  this->col, this->col->val , this->col->col);
+        
+        if(j < cols ){
+          this=newnode;
+        }
+        
       }
-      
-
-      /*
-      (*this+i*cols+j).val=factor*rand();
-      (*this+i*cols+j).row = nextrow;
-      (*this+i*cols+j).col = nextcol;
-
-      (*thiscol+i*cols+j).col = nextcol;
-      thiscol = (*thisrow+i*cols+j+1);
-      nextcol = thiscol+1;*/
     }
+
     printf("i is = %d\n",i );
-    if(i<rows-1){
+    if(rows == 1){
+
+      // solo una row
+      printf("solo 1 row\n");
+    } else if(i<rows-1){
       this = cpythis; // go back to the begining
       printf("\n");
       struct node* newnode2 = (struct node*)malloc(sizeof(struct node));
@@ -62,8 +65,12 @@ struct node* CreateRandomMatrix(int rows, int cols) {
       (*newnode2).row = NULL;
       (*newnode2).col = NULL;
       (*this).row = newnode2;
+      printf("this(%p):%d->%p / %p \n", this , this->val , this->col, this->row);
       this = this->row;
+
       cpythis = this;
+    } else {
+
     }
   }
 
